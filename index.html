@@ -56,7 +56,7 @@
 
       const copyButton = document.querySelector(".copy");
 
-      const card = document.querySelector('city-card');
+      const card = document.querySelector("city-card");
 
       function getRandomColor() {
         var letters = "0123456789ABCDEF";
@@ -67,29 +67,34 @@
         return color;
       }
 
-      function strobe(){
-        document.querySelector("body").style.backgroundColor = getRandomColor();
-        card.shadowRoot.querySelector('.card').style.backgroundColor = getRandomColor();
+      // Just pretend you didn't see this
+      function strobe() {
+        var color = getRandomColor();
+        document.querySelector("body").style.backgroundColor = color;
+        document.querySelector("html").style.backgroundColor = color;
       }
 
+      // Uncomment to give someone a seizure
       // window.setInterval(strobe, 250);
 
       copyButton.addEventListener("click", function (e) {
         const clone = card.cloneNode();
-        document.querySelector('#app').appendChild(clone);
+        document.querySelector("#app").appendChild(clone);
       });
 
       toggleBackground.addEventListener("click", function (e) {
         // Uncomment to also change card background color
-        card.shadowRoot.querySelector('.card').style.backgroundColor = getRandomColor();
-        document.querySelector("body").style.backgroundColor = getRandomColor();
+        // card.shadowRoot.querySelector('.card').style.backgroundColor = getRandomColor();
+        var color = getRandomColor();
+        document.querySelector("body").style.backgroundColor = color;
+        document.querySelector("html").style.backgroundColor = color;
       });
 
       changeTitle.addEventListener("click", function (e) {
         if (card.title == "Bryce Schneider") {
           card.setAttribute("title", "Something Else");
         } else {
-          card.setAttribute("title", "Bryce Schneider")
+          card.setAttribute("title", "Bryce Schneider");
         }
       });
 
