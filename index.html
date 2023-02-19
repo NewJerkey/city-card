@@ -1,28 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="Description" content="Put your description here." />
+    <base href="/" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Put your description here.">
-  <base href="/">
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #ededed;
+      }
+      .buttons button {
+        border-radius: 25px;
+      }
 
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #ededed;
-    }
-  </style>
-  <title>city-card</title>
-</head>
+      .details {
+        border-radius: 25px;
+        color: yellow;
+        background-color: #4caf50;
+      }
 
-<body>
-  <city-card></city-card>
+      button:hover,
+      button:focus {
+        background-color: yellow;
+      }
+    </style>
+    <title>city-card</title>
+  </head>
 
-  <script type="module" src="./src/city-card.js"></script>
-</body>
+  <body>
+    <div class="buttons">
+      <button class="copy">Duplicate</button>
+      <button class="changeBackground">Change Background</button>
+      <button class="changeTitle">Change Title</button>
+      <button id="delete">Delete Last Instance</button>
+    </div>
+    <div id="app">
+      <city-card></city-card>
+    </div>
 
+    <script type="module" src="./src/city-card.js"></script>
+    <script>
+      const toggleBackground = document.querySelector(".changeBackground");
+
+      const changeTitle = document.querySelector(".changeTitle");
+
+      const deleteButton = document.querySelector("#delete");
+
+      const copyButton = document.querySelector(".copy");
+
+      const card = document.querySelector('city-card');
+
+      function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function strobe(){
+        document.querySelector("body").style.backgroundColor = getRandomColor();
+        card.shadowRoot.querySelector('.card').style.backgroundColor = getRandomColor();
+      }
+
+      // window.setInterval(strobe, 250);
+
+      copyButton.addEventListener("click", function (e) {
+        const clone = card.cloneNode();
+        document.querySelector('#app').appendChild(clone);
+      });
+
+      toggleBackground.addEventListener("click", function (e) {
+        // Uncomment to also change card background color
+        card.shadowRoot.querySelector('.card').style.backgroundColor = getRandomColor();
+        document.querySelector("body").style.backgroundColor = getRandomColor();
+      });
+
+      changeTitle.addEventListener("click", function (e) {
+        if (card.title == "Bryce Schneider") {
+          card.setAttribute("title", "Something Else");
+        } else {
+          card.setAttribute("title", "Bryce Schneider")
+        }
+      });
+
+      deleteButton.addEventListener("click", function (e) {
+        if (
+          document.querySelector("#app :last-child") !==
+          document.querySelector("city-card")
+        ) {
+          document.querySelector("#app :last-child").remove();
+        }
+      });
+      // if you are reading this you are very handsome
+    </script>
+  </body>
 </html>
