@@ -19,17 +19,16 @@
       }
       .buttons button {
         border-radius: 25px;
-      }
-
-      .details {
-        border-radius: 25px;
         color: yellow;
         background-color: #4caf50;
       }
 
       button:hover,
       button:focus {
-        background-color: yellow;
+        background-color: blue;
+      }
+      .list {
+        text-align: left;
       }
     </style>
     <title>city-card</title>
@@ -41,9 +40,18 @@
       <button class="changeBackground">Change Background</button>
       <button class="changeTitle">Change Title</button>
       <button id="delete">Delete Last Instance</button>
+      <button class="details">Details</button>
     </div>
     <div id="app">
-      <city-card></city-card>
+      <city-card>
+        <img slot="imagelocation" src="https://btopro.com/assets/banner.jpg" />
+        <ul class="list">
+          <li>State: Pennsylvania</li>
+          <li>Crime Index: 7.9/10</li>
+          <li>Sugar Tax: Yes</li>
+          <li>Things to Do: Leave</li>
+        </ul>
+      </city-card>
     </div>
 
     <script type="module" src="./src/city-card.js"></script>
@@ -55,6 +63,8 @@
       const deleteButton = document.querySelector("#delete");
 
       const copyButton = document.querySelector(".copy");
+
+      const detailsButton = document.querySelector(".details");
 
       const card = document.querySelector("city-card");
 
@@ -106,6 +116,23 @@
           document.querySelector("#app :last-child").remove();
         }
       });
+
+      detailsButton.addEventListener("click", function (e) {
+        if (card.shadowRoot.querySelector(".stats").style.display === "none") {
+          card.shadowRoot.querySelector(".stats").style.display = "block";
+        } else {
+          card.shadowRoot.querySelector(".stats").style.display = "none";
+        }
+      });
+
+      addEventListener("load", function (e) {
+        if (card.shadowRoot.querySelector(".stats").style.display === "none") {
+          card.shadowRoot.querySelector(".stats").style.display = "block";
+        } else {
+          card.shadowRoot.querySelector(".stats").style.display = "none";
+        }
+      });
+
       // if you are reading this you are very handsome
     </script>
   </body>

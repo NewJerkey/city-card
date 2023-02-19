@@ -8,6 +8,7 @@ class CityCard extends LitElement {
     title: { type: String },
     image: { type: String },
     topLabel: { type: String },
+    detail: { type: String },
   };
 
   static styles = css`
@@ -33,13 +34,14 @@ class CityCard extends LitElement {
       background: blue;
     }
 
-    .paragraph {
+    .stats {
       font-size: 18px;
       color: white;
       margin-top: 24px;
       margin-bottom: 24px;
       margin-right: 24px;
       margin-left: 24px;
+      display: none;
     }
 
     .header {
@@ -52,12 +54,6 @@ class CityCard extends LitElement {
       border-radius: 25px;
     }
 
-    .details {
-      border-radius: 25px;
-      color: yellow;
-      background-color: #4caf50;
-    }
-
     button:hover,
     button:focus {
       background-color: yellow;
@@ -65,7 +61,7 @@ class CityCard extends LitElement {
 
     .image {
       border: 3px solid yellow;
-      max-width: 300px;
+      max-width: 400px;
       text-align: center;
     }
 
@@ -84,10 +80,11 @@ class CityCard extends LitElement {
 
   constructor() {
     super();
-    this.title = "Bryce Schneider";
+    this.title = "Philadelphia";
     this.image =
-      "https://cdn.discordapp.com/attachments/1062806966021402684/1063160172773654659/IMG_9420.png";
-    this.topLabel = "Handsome Bryce";
+      "https://whyy.org/wp-content/uploads/2020/01/2018-03-15-e-lee-philadelphia-germantown-developer-emanuel-freeman-garbage.jpg";
+    this.topLabel = "Worst City";
+    this.detail = "City Statistics";
   }
 
   render() {
@@ -101,12 +98,9 @@ class CityCard extends LitElement {
             image-url=${this.image}
             top-text=${this.topLabel}
           ></meme-maker>
-          <p class="paragraph">
-            This image depicts a strapping young Penn State student reacting to
-            an insane moment in his favorite class: IST 256. He can not believe
-            what he is seeing!
-          </p>
-          <button class="details" @click=${this.details}>Details</button>
+          <div class="stats">
+            <slot></slot>
+          </div>
         </div>
       </div>
     `;
