@@ -99,7 +99,8 @@ class CityCard extends LitElement {
             top-text=${this.topLabel}
           ></meme-maker>
           <div class="stats">
-            <slot></slot>
+            <h3 class="header">${this.detail}</h3>
+            <slot name="stats"></slot>
           </div>
         </div>
       </div>

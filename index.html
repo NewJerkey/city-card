@@ -44,8 +44,7 @@
     </div>
     <div id="app">
       <city-card>
-        <img slot="imagelocation" src="https://btopro.com/assets/banner.jpg" />
-        <ul class="list">
+        <ul class="list" slot="stats">
           <li>State: Pennsylvania</li>
           <li>Crime Index: 7.9/10</li>
           <li>Sugar Tax: Yes</li>
@@ -101,10 +100,10 @@
       });
 
       changeTitle.addEventListener("click", function (e) {
-        if (card.title == "Bryce Schneider") {
+        if (card.title == "Philadelphia") {
           card.setAttribute("title", "Something Else");
         } else {
-          card.setAttribute("title", "Bryce Schneider");
+          card.setAttribute("title", "Philadelphia");
         }
       });
 
