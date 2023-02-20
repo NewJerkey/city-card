@@ -41,6 +41,7 @@
       <button class="changeTitle">Change Title</button>
       <button id="delete">Delete Last Instance</button>
       <button class="details">Details</button>
+      <button class="strobe">Strobe</button>
     </div>
     <div id="app">
       <city-card>
@@ -65,7 +66,11 @@
 
       const detailsButton = document.querySelector(".details");
 
+      const strobeButton = document.querySelector(".strobe");
+
       const card = document.querySelector("city-card");
+
+      var strobeOn = false;
 
       function getRandomColor() {
         var letters = "0123456789ABCDEF";
@@ -76,15 +81,15 @@
         return color;
       }
 
-      // Just pretend you didn't see this
       function strobe() {
-        var color = getRandomColor();
-        document.querySelector("body").style.backgroundColor = color;
-        document.querySelector("html").style.backgroundColor = color;
+        if (strobeOn == true) {
+          var color = getRandomColor();
+          document.querySelector("body").style.backgroundColor = color;
+          document.querySelector("html").style.backgroundColor = color;
+        }
       }
 
-      // Uncomment to give someone a seizure
-      // window.setInterval(strobe, 100);
+      window.setInterval(strobe, 10);
 
       copyButton.addEventListener("click", function (e) {
         const clone = card.cloneNode();
@@ -121,6 +126,14 @@
           card.shadowRoot.querySelector(".stats").style.display = "block";
         } else {
           card.shadowRoot.querySelector(".stats").style.display = "none";
+        }
+      });
+
+      strobeButton.addEventListener("click", function (e) {
+        if (strobeOn == false) {
+          strobeOn = true;
+        } else {
+          strobeOn = false;
         }
       });
 
