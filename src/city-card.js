@@ -41,7 +41,8 @@ class CityCard extends LitElement {
       margin-bottom: 24px;
       margin-right: 24px;
       margin-left: 24px;
-      display: none;
+      display: block;
+      text-align: left;
     }
 
     .header {
@@ -63,6 +64,12 @@ class CityCard extends LitElement {
       border: 3px solid yellow;
       max-width: 400px;
       text-align: center;
+    }
+
+    summary {
+      font: 20px Papyrus;
+      color: white;
+      margin-top: 16px;
     }
 
     @media (max-width: 800px) and (min-width: 500px) {
@@ -98,10 +105,12 @@ class CityCard extends LitElement {
             image-url=${this.image}
             top-text=${this.topLabel}
           ></meme-maker>
-          <div class="stats">
-            <h3 class="header">${this.detail}</h3>
-            <slot name="stats"></slot>
-          </div>
+          <details class="details">
+            <summary>${this.detail}</summary>
+            <div class="stats">
+              <slot name="stats"></slot>
+            </div>
+          </details>
         </div>
       </div>
     `;

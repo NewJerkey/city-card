@@ -27,9 +27,6 @@
       button:focus {
         background-color: blue;
       }
-      .list {
-        text-align: left;
-      }
     </style>
     <title>city-card</title>
   </head>
@@ -45,7 +42,7 @@
     </div>
     <div id="app">
       <city-card>
-        <ul class="list" slot="stats">
+        <ul slot="stats">
           <li>State: Pennsylvania</li>
           <li>Crime Index: 7.9/10</li>
           <li>Sugar Tax: Yes</li>
@@ -55,6 +52,9 @@
     </div>
 
     <script type="module" src="./src/city-card.js"></script>
+    <script type="module">
+      import "@lrnwebcomponents/meme-maker/meme-maker.js";
+    </script>
     <script>
       const toggleBackground = document.querySelector(".changeBackground");
 
@@ -122,10 +122,10 @@
       });
 
       detailsButton.addEventListener("click", function (e) {
-        if (card.shadowRoot.querySelector(".stats").style.display === "none") {
-          card.shadowRoot.querySelector(".stats").style.display = "block";
+        if (card.shadowRoot.querySelector(".details").getAttribute('open')) {
+          card.shadowRoot.querySelector(".details").removeAttribute('open');
         } else {
-          card.shadowRoot.querySelector(".stats").style.display = "none";
+          card.shadowRoot.querySelector(".details").setAttribute('open','open');    
         }
       });
 
@@ -134,14 +134,6 @@
           strobeOn = true;
         } else {
           strobeOn = false;
-        }
-      });
-
-      addEventListener("load", function (e) {
-        if (card.shadowRoot.querySelector(".stats").style.display === "none") {
-          card.shadowRoot.querySelector(".stats").style.display = "block";
-        } else {
-          card.shadowRoot.querySelector(".stats").style.display = "none";
         }
       });
 
