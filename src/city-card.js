@@ -16,7 +16,7 @@ class CityCard extends LitElement {
       background: grey;
     }
     .wrapper {
-      display: inline-flex;
+      display: inline-block
     }
     .card {
       width: 300px;

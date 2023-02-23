@@ -27,6 +27,7 @@
       button:focus {
         background-color: blue;
       }
+
     </style>
     <title>city-card</title>
   </head>
@@ -93,12 +94,14 @@
 
       copyButton.addEventListener("click", function (e) {
         const clone = card.cloneNode();
-        document.querySelector("#app").appendChild(clone);
+        var child = document.querySelector("#app").appendChild(clone.cloneNode(true));
+        child.classList.add("card2");
+        console.log(child);
       });
 
       toggleBackground.addEventListener("click", function (e) {
-        // Uncomment to also change card background color
-        // card.shadowRoot.querySelector('.card').style.backgroundColor = getRandomColor();
+        card.shadowRoot.querySelector(".card").style.backgroundColor =
+          getRandomColor();
         var color = getRandomColor();
         document.querySelector("body").style.backgroundColor = color;
         document.querySelector("html").style.backgroundColor = color;
@@ -113,19 +116,21 @@
       });
 
       deleteButton.addEventListener("click", function (e) {
-        if (
-          document.querySelector("#app :last-child") !==
-          document.querySelector("city-card")
-        ) {
-          document.querySelector("#app :last-child").remove();
-        }
+        var x = document.querySelector(".card2");
+        x.remove(0);
+
+        // if (document.querySelector("#app :last-child") !== card) {
+        //   document.querySelector("#app :last-child").remove();
+        // }
       });
 
       detailsButton.addEventListener("click", function (e) {
-        if (card.shadowRoot.querySelector(".details").getAttribute('open')) {
-          card.shadowRoot.querySelector(".details").removeAttribute('open');
+        if (card.shadowRoot.querySelector(".details").getAttribute("open")) {
+          card.shadowRoot.querySelector(".details").removeAttribute("open");
         } else {
-          card.shadowRoot.querySelector(".details").setAttribute('open','open');    
+          card.shadowRoot
+            .querySelector(".details")
+            .setAttribute("open", "open");
         }
       });
 
