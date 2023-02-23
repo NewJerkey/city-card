@@ -79,7 +79,7 @@ class CityCard extends LitElement {
     }
 
     @media (max-width: 500px) {
-      * {
+      .card {
         transform: scale(0.8);
       }
     }
