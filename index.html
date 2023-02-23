@@ -16,6 +16,7 @@
         padding: 0;
         font-family: sans-serif;
         background-color: #ededed;
+        --city-card-background-color: green;
       }
       .buttons button {
         border-radius: 25px;
@@ -26,6 +27,9 @@
       button:hover,
       button:focus {
         background-color: blue;
+      }
+      city-card::part(details) {
+        font-size: 22px;
       }
 
     </style>
@@ -39,6 +43,7 @@
       <button class="changeTitle">Change Title</button>
       <button id="delete">Delete Last Instance</button>
       <button class="details">Details</button>
+      <button class="blind">Colorblind</button>
       <button class="strobe">Strobe</button>
     </div>
     <div id="app">
@@ -68,6 +73,8 @@
       const detailsButton = document.querySelector(".details");
 
       const strobeButton = document.querySelector(".strobe");
+
+      const colorBlind = document.querySelector(".blind");
 
       const card = document.querySelector("city-card");
 
@@ -140,6 +147,10 @@
         } else {
           strobeOn = false;
         }
+      });
+
+      colorBlind.addEventListener("click", function (e) {
+        card.cardColor = "colorblind";
       });
 
       // if you are reading this you are very handsome

@@ -9,34 +9,36 @@ class CityCard extends LitElement {
     image: { type: String },
     topLabel: { type: String },
     detail: { type: String },
+    cardColor: { type: String, reflect: true, attribute: "card-color" },
   };
 
   static styles = css`
-    body {
-      background: grey;
+    :host([card-color="colorblind"]) .card {
+      border: 3px solid white;
+      background-color: black;
     }
+
+    :host([card-color="colorblind"]) .image {
+      border: 3px solid white;
+    }
+
     .wrapper {
-      display: inline-block
+      display: inline-block;
     }
     .card {
-      width: 300px;
+      width: var(--city-card-width, 300px);
       text-align: center;
-      border: 3px solid yellow;
-      margin-top: 40px;
-      margin-bottom: 40px;
-      margin-right: 40px;
-      margin-left: 80px;
-      padding-bottom: 16px;
-      padding-right: 8px;
-      padding-left: 8px;
-      box-shadow: 3px 3px;
-      border-radius: 25px;
-      background: blue;
+      border: var(--city-card-border, 3px solid yellow);
+      margin: 40px 40px 40px 80px;
+      padding: 0px 8px 16px 8px;
+      box-shadow: var(--city-card-box-shadow, 3px 3px);
+      border-radius: var(--city-card-border-radius, 25px);
+      background: var(--city-card-background-color, blue);
     }
 
     .stats {
       font-size: 18px;
-      color: white;
+      color: var(--city-card-stats-color, white);
       margin-top: 24px;
       margin-bottom: 24px;
       margin-right: 24px;
@@ -46,8 +48,8 @@ class CityCard extends LitElement {
     }
 
     .header {
-      font: 38px Papyrus;
-      color: white;
+      font: var(--city-card-title-font, 38px Papyrus);
+      color: var(--city-card-title-color, white);
       margin-bottom: 16px;
     }
 
@@ -67,7 +69,7 @@ class CityCard extends LitElement {
     }
 
     summary {
-      font: 20px Papyrus;
+      font: var(--city-card-subheading-font, 20px Papyrus);
       color: white;
       margin-top: 16px;
     }
@@ -92,6 +94,7 @@ class CityCard extends LitElement {
       "https://whyy.org/wp-content/uploads/2020/01/2018-03-15-e-lee-philadelphia-germantown-developer-emanuel-freeman-garbage.jpg";
     this.topLabel = "Worst City";
     this.detail = "City Statistics";
+    this.cardColor = "normal";
   }
 
   render() {
@@ -106,7 +109,7 @@ class CityCard extends LitElement {
             top-text=${this.topLabel}
           ></meme-maker>
           <details class="details">
-            <summary>${this.detail}</summary>
+            <summary part="details">${this.detail}</summary>
             <div class="stats">
               <slot name="stats"></slot>
             </div>
