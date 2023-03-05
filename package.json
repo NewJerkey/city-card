@@ -3,7 +3,7 @@
   "description": "Webcomponent city-card following open-wc recommendations",
   "license": "MIT",
   "author": "city-card",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "test": "web-test-runner --coverage",
