@@ -5,11 +5,12 @@ import "@lrnwebcomponents/meme-maker/meme-maker.js";
 
 class CityCard extends LitElement {
   static properties = {
-    title: { type: String },
-    image: { type: String },
-    topLabel: { type: String },
-    detail: { type: String },
+    title: { type: String, reflect: true },
+    image: { type: String, reflect: true },
+    topLabel: { type: String, reflect: true },
+    detail: { type: String, reflect: true },
     cardColor: { type: String, reflect: true, attribute: "card-color" },
+    opened: { type: Boolean, reflect: true},
   };
 
   static styles = css`
@@ -95,7 +96,34 @@ class CityCard extends LitElement {
     this.topLabel = "Worst City";
     this.detail = "City Statistics";
     this.cardColor = "normal";
+    this.opened = false;
   }
+
+  toggleEvent(e) {
+    const state =
+      this.shadowRoot.querySelector("details").getAttribute("open") === ""
+        ? true
+        : false;
+    this.opened = state;
+  }
+
+  updated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      if (propName === "opened") {
+        this.dispatchEvent(
+          new CustomEvent("open-changed", {
+            composed: true,
+            bubbles: true,
+            cacnelable: false,
+            detail: {
+              value: this[propName],
+            },
+          })
+        );
+      }
+    });
+  }
+
 
   render() {
     return html`
@@ -108,7 +136,8 @@ class CityCard extends LitElement {
             image-url=${this.image}
             top-text=${this.topLabel}
           ></meme-maker>
-          <details class="details">
+          <details class="details" .open=${this.opened}
+          @toggle="${this.toggleEvent}">
             <summary part="details">${this.detail}</summary>
             <div class="stats">
               <slot name="stats"></slot>

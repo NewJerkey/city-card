@@ -132,14 +132,18 @@
       });
 
       detailsButton.addEventListener("click", function (e) {
-        if (card.shadowRoot.querySelector(".details").getAttribute("open")) {
-          card.shadowRoot.querySelector(".details").removeAttribute("open");
-        } else {
-          card.shadowRoot
-            .querySelector(".details")
-            .setAttribute("open", "open");
-        }
+        card.opened = !card.opened;
       });
+
+      // detailsButton.addEventListener("click", function (e) {
+      //   if (card.shadowRoot.querySelector(".details").getAttribute("open")) {
+      //     card.shadowRoot.querySelector(".details").removeAttribute("open");
+      //   } else {
+      //     card.shadowRoot
+      //       .querySelector(".details")
+      //       .setAttribute("open", "open");
+      //   }
+      // });
 
       strobeButton.addEventListener("click", function (e) {
         if (strobeOn == false) {
