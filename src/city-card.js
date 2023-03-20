@@ -10,7 +10,7 @@ class CityCard extends LitElement {
     topLabel: { type: String, reflect: true },
     detail: { type: String, reflect: true },
     cardColor: { type: String, reflect: true, attribute: "card-color" },
-    opened: { type: Boolean, reflect: true},
+    opened: { type: Boolean, reflect: true}
   };
 
   static styles = css`
@@ -95,7 +95,6 @@ class CityCard extends LitElement {
       "https://whyy.org/wp-content/uploads/2020/01/2018-03-15-e-lee-philadelphia-germantown-developer-emanuel-freeman-garbage.jpg";
     this.topLabel = "Worst City";
     this.detail = "City Statistics";
-    this.cardColor = "normal";
     this.opened = false;
   }
 

@@ -23,7 +23,6 @@
         color: yellow;
         background-color: #4caf50;
       }
-
       button:hover,
       button:focus {
         background-color: blue;
@@ -31,12 +30,14 @@
       city-card::part(details) {
         font-size: 22px;
       }
-
     </style>
     <title>city-card</title>
   </head>
 
   <body>
+
+    <city-skylines></city-skylines>
+
     <div class="buttons">
       <button class="copy">Duplicate</button>
       <button class="changeBackground">Change Background</button>
@@ -57,7 +58,10 @@
       </city-card>
     </div>
 
-    <script type="module" src="./src/city-card.js"></script>
+    <script type="module">
+      import "./src/city-skylines.js";
+      import "./src/city-card.js";
+    </script>
     <script type="module">
       import "@lrnwebcomponents/meme-maker/meme-maker.js";
     </script>
@@ -101,7 +105,9 @@
 
       copyButton.addEventListener("click", function (e) {
         const clone = card.cloneNode();
-        var child = document.querySelector("#app").appendChild(clone.cloneNode(true));
+        var child = document
+          .querySelector("#app")
+          .appendChild(clone.cloneNode(true));
         child.classList.add("card2");
         console.log(child);
       });
@@ -116,9 +122,9 @@
 
       changeTitle.addEventListener("click", function (e) {
         if (card.title == "Philadelphia") {
-          card.title = "Bing Bong"
+          card.title = "Bing Bong";
         } else {
-          card.title = "Philadelphia"
+          card.title = "Philadelphia";
         }
       });
 
